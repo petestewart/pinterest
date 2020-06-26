@@ -1,0 +1,11 @@
+{ 
+  "firebaseConfig" : {
+  "apiKey": "AIzaSyCAM7L8AC-y0AgfTUBLZjOBD64ACZGQWsc",
+  "authDomain": "pinterest-bbffb.firebaseapp.com",
+  "databaseURL": "https://pinterest-bbffb.firebaseio.com",
+  "projectId": "pinterest-bbffb",
+  "storageBucket": "pinterest-bbffb.appspot.com",
+  "messagingSenderId": "697038165486",
+  "appId": "1:697038165486:web:0c5cec412e3f90f8f4aaff"
+  }
+}
