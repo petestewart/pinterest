@@ -1,0 +1,6 @@
+{
+	"users": "object",
+	"boards": "object",
+	"pins": "object",
+	"boardPins": "object"
+}
