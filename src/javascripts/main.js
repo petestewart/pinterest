@@ -11,6 +11,12 @@ const init = () => {
   authData.checkLoginStatus();
   auth.createLoginButton();
   navbar.logoutEvent();
+  $('body').on('mouseenter', '.card', (e) => {
+    e.target.closest('.card').classList.add('bg-dark');
+  });
+  $('body').on('mouseleave', '.card', (e) => {
+    e.target.closest('.card').classList.remove('bg-dark');
+  });
 };
 
 init();
