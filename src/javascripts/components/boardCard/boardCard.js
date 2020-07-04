@@ -1,6 +1,3 @@
-// import utils from '../../helpers/utils';
-// import pinData from '../../helpers/data/pinData';
-
 const boardCardMaker = (board) => {
   const domString = `
   <div class="card" id =${board.id} style="width: 18rem;">

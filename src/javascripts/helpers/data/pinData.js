@@ -12,10 +12,19 @@ const getBoardPins = (boardId) => new Promise((resolve, reject) => {
         pinsObjects[pinId].id = pinId;
         boardPins.push(pinsObjects[pinId]);
       });
-      // console.error(boardPins);
       resolve(boardPins);
     })
     .catch((err) => reject(err));
 });
 
-export default { getBoardPins };
+const getSinglePin = (pinId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/pins.json`)
+    .then((response) => {
+      const pins = response.data;
+      const singlePin = pins[pinId];
+      resolve(singlePin);
+    })
+    .catch((err) => reject(err));
+});
+
+export default { getBoardPins, getSinglePin };

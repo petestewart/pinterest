@@ -1,10 +1,7 @@
 import utils from '../../helpers/utils';
 import boardData from '../../helpers/data/boardData';
 import boardCard from '../boardCard/boardCard';
-import singleBoard from '../pinList/pinList';
-
-// const boardCard = (userId) => {
-// };
+import pinList from '../pinList/pinList';
 
 const createBoards = () => {
   const userId = utils.getCurrentUserId();
@@ -16,8 +13,7 @@ const createBoards = () => {
         domString += boardCard.boardCardMaker(board);
       });
       utils.printToDom('#content', domString);
-      // $('body').on('click', '.card', console.error('clicked'));
-      $('body').on('click', '.card', singleBoard.showBoard);
+      $('body').on('click', '.card', pinList.showBoard);
     })
     .catch((error) => console.error('getUserBoards broke ', error));
 };
