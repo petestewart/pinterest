@@ -11,10 +11,10 @@ const init = () => {
   authData.checkLoginStatus();
   auth.createLoginButton();
   navbar.logoutEvent();
-  $('body').on('mouseenter', '.card', (e) => {
+  $('body').on('mouseenter', '.pin-selector', (e) => {
     e.target.closest('.card').classList.add('bg-dark');
   });
-  $('body').on('mouseleave', '.card', (e) => {
+  $('body').on('mouseleave', '.pin-selector', (e) => {
     e.target.closest('.card').classList.remove('bg-dark');
   });
 };
