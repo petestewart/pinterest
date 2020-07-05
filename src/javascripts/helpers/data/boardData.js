@@ -19,4 +19,13 @@ const getUserBoards = (userId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getUserBoards };
+const getBoardName = (boardId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/boards.json`)
+    .then((response) => {
+      const boardName = response.data[boardId].name;
+      resolve(boardName);
+    })
+    .catch((err) => reject(err));
+});
+
+export default { getUserBoards, getBoardName };

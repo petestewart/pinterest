@@ -1,0 +1,29 @@
+.single-pin-container {
+  display: flex;
+  flex-direction: row;
+  width: calc(80vw + 10px);
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+#edit {
+  width: 40vw;
+  background-color: white;
+  padding: 20px;
+}
+
+.pin-image {
+  width: 40vw;
+  background-color: green;
+    img {
+      width: 100%;
+    }
+}
+
+.pin-info-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
