@@ -1,6 +1,6 @@
 import editWindow from '../editWindow/editWindow';
 import pinCard from '../pinCard/pinCard';
-import pinData from '../../helpers/data/pinData'; // also dependency cycle error
+import pinData from '../../helpers/data/pinData';
 import utils from '../../helpers/utils';
 
 const showPin = (e) => {

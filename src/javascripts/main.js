@@ -3,6 +3,7 @@ import apiKeys from './helpers/apiKeys.json';
 import authData from './helpers/data/authData';
 import auth from './components/auth/auth';
 import navbar from './components/navbar/navbar';
+import clickEvents from './helpers/clickEvents';
 import 'bootstrap';
 import '../styles/main.scss';
 
@@ -17,6 +18,7 @@ const init = () => {
   $('body').on('mouseleave', '.pin-selector', (e) => {
     e.target.closest('.card').classList.remove('bg-dark');
   });
+  clickEvents.clickEvents();
 };
 
 init();
