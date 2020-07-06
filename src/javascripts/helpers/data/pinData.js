@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
+import pinList from '../../components/pinList/pinList'; // <-- This was the first dependency error
 
 const baseUrl = apiKeys.firebaseConfig.databaseURL;
 
@@ -18,13 +19,28 @@ const getBoardPins = (boardId) => new Promise((resolve, reject) => {
 });
 
 const getSinglePin = (pinId) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/pins.json`)
+  axios.get(`${baseUrl}/pins/${pinId}.json`)
     .then((response) => {
-      const pins = response.data;
-      const singlePin = pins[pinId];
+      const singlePin = response.data;
+      singlePin.id = pinId;
       resolve(singlePin);
     })
     .catch((err) => reject(err));
 });
 
-export default { getBoardPins, getSinglePin };
+const deletePin = (e) => new Promise(() => {
+  const pinId = e.target.attributes[3].value;
+  let boardId = '';
+  getSinglePin(pinId)
+    .then((pin) => {
+      boardId = pin.boardId;
+    })
+    .then(() => {
+      axios.delete(`${baseUrl}/pins/${pinId}.json`);
+    })
+    .then(() => {
+      pinList.showBoard(boardId); // <-- This is what is supposed to redraw the board
+    });
+});
+
+export default { getBoardPins, getSinglePin, deletePin };

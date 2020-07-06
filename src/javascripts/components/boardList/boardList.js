@@ -13,7 +13,7 @@ const createBoards = () => {
         domString += boardCard.boardCardMaker(board);
       });
       utils.printToDom('#content', domString);
-      $('body').on('click', '.pin-selector', pinList.showBoard);
+      $('body').on('click', '.pin-selector', pinList.showBoardEvent);
     })
     .catch((error) => console.error('getUserBoards broke ', error));
 };
