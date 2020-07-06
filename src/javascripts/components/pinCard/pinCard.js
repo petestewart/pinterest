@@ -41,4 +41,6 @@ const hideEditButton = () => {
   $('#edit-button').addClass('hide');
 };
 
-export default { pinCardMaker, showEditButton, hideEditButton };
+export default {
+  pinCardMaker, showEditButton, hideEditButton,
+};

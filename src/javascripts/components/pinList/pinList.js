@@ -1,5 +1,5 @@
-import pinData from '../../helpers/data/pinData'; // also dependency cycle error
-import singlePin from '../singlePin/singlePin'; // also dependency cycle error
+import pinData from '../../helpers/data/pinData';
+import singlePin from '../singlePin/singlePin';
 import utils from '../../helpers/utils';
 import userData from '../../helpers/data/userData';
 import './pinList.scss';

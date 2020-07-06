@@ -1,6 +1,6 @@
 import editWindow from '../editWindow/editWindow';
 import pinCard from '../pinCard/pinCard';
-import pinData from '../../helpers/data/pinData'; // also dependency cycle error
+import pinData from '../../helpers/data/pinData';
 import utils from '../../helpers/utils';
 
 const showPin = (e) => {
@@ -11,7 +11,7 @@ const showPin = (e) => {
       pinCard.pinCardMaker(pin)
         .then((domString) => {
           utils.printToDom('#content', domString);
-          $('#edit-button').click(editWindow.pinEditWindow);
+          $('#edit-button').click(editWindow.pinEditWindow); // used to be editWindow
           $('body').on('mouseenter', '#edit', () => {
             pinCard.showEditButton();
           });
