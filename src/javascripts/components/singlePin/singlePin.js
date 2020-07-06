@@ -11,7 +11,7 @@ const showPin = (e) => {
       pinCard.pinCardMaker(pin)
         .then((domString) => {
           utils.printToDom('#content', domString);
-          $('#edit-button').click(editWindow.pinEditWindow); // used to be editWindow
+          $('#edit-button').click(editWindow.pinEditWindow);
           $('body').on('mouseenter', '#edit', () => {
             pinCard.showEditButton();
           });

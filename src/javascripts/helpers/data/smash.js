@@ -1,5 +1,4 @@
 import pinData from './pinData';
-// import pinList from '../../components/pinList/pinList';
 
 const totallyDeletePin = (pinId) => new Promise((resolve, reject) => {
   let boardId = '';
@@ -11,8 +10,6 @@ const totallyDeletePin = (pinId) => new Promise((resolve, reject) => {
       pinData.deletePin(pinId);
     })
     .then(() => {
-      console.error(`smash: I obtained ${boardId} but someone else needs to redraw it`);
-      // pinList.showBoard(boardId);
       resolve(boardId);
     })
     .catch((err) => reject(err));
