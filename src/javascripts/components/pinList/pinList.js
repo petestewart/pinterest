@@ -1,5 +1,6 @@
 import pinData from '../../helpers/data/pinData';
-import singlePin from '../singlePin/singlePin';
+import boardData from '../../helpers/data/boardData';
+// import singlePin from '../singlePin/singlePin';
 import utils from '../../helpers/utils';
 import userData from '../../helpers/data/userData';
 import './pinList.scss';
@@ -23,22 +24,25 @@ const makePin = (pin) => new Promise((resolve, reject) => {
 });
 
 const showBoard = (boardId) => {
+  let domString = '';
+  console.error('showBoard called');
   pinData.getBoardPins(boardId)
     .then((pins) => {
-      utils.printToDom('#header', `<h2 class="text-center">${boardId}</h2>`);
-      utils.printToDom('#content', '');
-      const contentDiv = $('#content');
       pins.forEach((pin) => {
         makePin(pin)
-          .then((response) => { contentDiv.append(response); });
+          .then((response) => {
+            domString += response;
+          })
+          .then(() => {
+            utils.printToDom('#content', domString);
+          });
       });
-      $('body').on('mouseenter', '.pin', (event) => {
-        event.target.closest('.card').classList.add('bg-dark');
-      });
-      $('body').on('mouseleave', '.pin', (event) => {
-        event.target.closest('.card').classList.remove('bg-dark');
-      });
-      $('body').on('click', '.pin', singlePin.showPin);
+    })
+    .then(() => {
+      boardData.getBoardName(boardId)
+        .then((response) => {
+          utils.printToDom('#header', `<h2 class="text-center">${response}</h2>`);
+        });
     })
     .catch((err) => console.error('showBoard broke', err));
 };

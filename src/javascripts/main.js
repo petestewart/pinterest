@@ -13,10 +13,10 @@ const init = () => {
   auth.createLoginButton();
   navbar.logoutEvent();
   $('body').on('mouseenter', '.pin-selector', (e) => {
-    e.target.closest('.card').classList.add('bg-dark');
+    e.target.closest('.card').classList.add('hovering');
   });
   $('body').on('mouseleave', '.pin-selector', (e) => {
-    e.target.closest('.card').classList.remove('bg-dark');
+    e.target.closest('.card').classList.remove('hovering');
   });
   clickEvents.clickEvents();
 };

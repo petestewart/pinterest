@@ -1,31 +1,42 @@
 import utils from '../../helpers/utils';
 import boardData from '../../helpers/data/boardData';
 import boardCard from '../boardCard/boardCard';
-import pinList from '../pinList/pinList';
-// import pinData from '../../helpers/data/pinData';
+// import pinList from '../pinList/pinList';
 
-// const boardPreview = (boardId) => new Promise((resolve, reject) => {
+// const createBoards = () => {
 //   let domString = '';
-//   pinData.getBoardPins(boardId)
-//     .then((boardPins) => {
-//       boardPins.forEach((boardPin) => {
-//         domString += `<img src=${boardPin.url}>`;
+//   const userId = utils.getCurrentUserId();
+//   boardData.getUserBoards(userId)
+//     .then((boards) => {
+//       utils.printToDom('#header', '<h2 class="text-center">Your Boards</h2>');
+//       boards.forEach((board) => {
+//         boardCard.boardCardMaker(board)
+//           .then((response) => {
+//             domString += response;
+//           })
+//           .then(() => {
+//             utils.printToDom('#content', domString);
+//           });
 //       });
-//       resolve(domString);
 //     })
-// })
+//     .catch((error) => console.error('getUserBoards broke ', error));
+// };
 
 const createBoards = () => {
+  let domString = '';
   const userId = utils.getCurrentUserId();
   boardData.getUserBoards(userId)
     .then((boards) => {
       utils.printToDom('#header', '<h2 class="text-center">Your Boards</h2>');
-      let domString = '';
       boards.forEach((board) => {
-        domString += boardCard.boardCardMaker(board);
+        boardCard.boardCardMaker(board)
+          .then((response) => {
+            domString += response;
+          })
+          .then(() => {
+            utils.printToDom('#content', domString);
+          });
       });
-      utils.printToDom('#content', domString);
-      $('body').on('click', '.pin-selector', pinList.showBoardEvent);
     })
     .catch((error) => console.error('getUserBoards broke ', error));
 };
