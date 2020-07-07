@@ -1,9 +1,37 @@
 import pinData from '../../helpers/data/pinData';
 import boardData from '../../helpers/data/boardData';
-// import singlePin from '../singlePin/singlePin';
 import utils from '../../helpers/utils';
 import userData from '../../helpers/data/userData';
 import './pinList.scss';
+
+const getHeaderInfo = (boardId) => new Promise((resolve, reject) => {
+  const userId = utils.getCurrentUserId();
+  console.error(`getHearInfo called for ${userId} and ${boardId}`);
+  let boardName = '';
+  let avatar = '';
+  boardData.getBoardName(boardId).then((response) => { boardName = response; })
+    .then(() => {
+      userData.getavatar(userId).then((response) => { avatar = response; })
+        .then(() => {
+          const headerInfo = { boardName, avatar };
+          console.error(`getHeaderInfo about to resolve ${headerInfo.avatar} and ${headerInfo.boardName}`);
+          resolve(headerInfo);
+        });
+    })
+    .catch((err) => { reject(err); });
+});
+
+const createBoardHeader = (boardId) => {
+  getHeaderInfo(boardId)
+    .then((headerInfo) => {
+      console.error(`createBoardHeader recieved ${headerInfo.avatar} and ${headerInfo.boardName}`);
+      const headerString = `
+        <div class="header-chunk"><img src="${headerInfo.avatar}" class="avatar-s home-button" alt="profile pic">
+        <span class="header-text">${headerInfo.boardName}</span></div>
+        `;
+      utils.printToDom('#header', headerString);
+    });
+};
 
 const makePin = (pin) => new Promise((resolve, reject) => {
   const userId = pin.uid;
@@ -24,8 +52,8 @@ const makePin = (pin) => new Promise((resolve, reject) => {
 });
 
 const showBoard = (boardId) => {
+  createBoardHeader(boardId);
   let domString = '';
-  console.error('showBoard called');
   pinData.getBoardPins(boardId)
     .then((pins) => {
       pins.forEach((pin) => {
@@ -38,12 +66,6 @@ const showBoard = (boardId) => {
           });
       });
     })
-    .then(() => {
-      boardData.getBoardName(boardId)
-        .then((response) => {
-          utils.printToDom('#header', `<h2 class="text-center">${response}</h2>`);
-        });
-    })
     .catch((err) => console.error('showBoard broke', err));
 };
 
@@ -52,4 +74,4 @@ const showBoardEvent = (e) => {
   showBoard(boardId);
 };
 
-export default { showBoard, showBoardEvent };
+export default { showBoard, showBoardEvent, getHeaderInfo };

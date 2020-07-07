@@ -3,8 +3,7 @@ import pinCard from '../pinCard/pinCard';
 import pinData from '../../helpers/data/pinData';
 import utils from '../../helpers/utils';
 
-const showPin = (e) => {
-  const pinId = e.target.closest('.card').id;
+const showPin = (pinId) => {
   pinData.getSinglePin(pinId)
     .then((pin) => {
       utils.printToDom('#header', '');

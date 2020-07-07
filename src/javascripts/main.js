@@ -12,10 +12,10 @@ const init = () => {
   authData.checkLoginStatus();
   auth.createLoginButton();
   navbar.logoutEvent();
-  $('body').on('mouseenter', '.pin-selector', (e) => {
+  $('body').on('mouseenter', '.board-selector', (e) => {
     e.target.closest('.card').classList.add('hovering');
   });
-  $('body').on('mouseleave', '.pin-selector', (e) => {
+  $('body').on('mouseleave', '.board-selector', (e) => {
     e.target.closest('.card').classList.remove('hovering');
   });
   clickEvents.clickEvents();

@@ -11,8 +11,10 @@ body {
 
 #header {
   width: 100vw;
-  display: flex;
-  justify-content: space-around;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  // justify-content: space-around;
 }
 
 #content {
@@ -23,4 +25,35 @@ body {
 
 .hovering {
   background-color:lightgray;
+}
+
+.avatar-l {
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    margin-left: calc((100% - 120px)/2);
+}
+
+.avatar-s {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  // margin-left: calc((100% - 120px)/2);
+}
+
+.avatar-mini {
+  border-radius: 50%;
+  height: 1.5em;
+  width: 1.5em;
+}
+
+.header-chunk {
+  margin-left: 45%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.header-text {
+  font-size: x-large;
+  font-weight: bold;
 }
