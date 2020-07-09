@@ -14,7 +14,7 @@ const pinCardString = (pin) => {
             saved to <strong class="board-link" id="${pin.boardId}">${pin.boardName}</strong>
           </div>
           <div>
-            <button id="edit-button" class="hide"><i class="fas fa-edit"></i></button>
+            <button id="edit-button" class="pin-edit-button hide"><i class="fas fa-edit"></i></button>
           </div>
         </div>
       </div>
@@ -27,7 +27,6 @@ const pinCardMaker = (pin) => new Promise((resolve, reject) => {
   const pinObject = pin;
   pinList.getHeaderInfo(pin.boardId)
     .then((response) => {
-      console.error(`pinCardMaker recieved ${response.boardName} and ${response.avatar}`);
       pinObject.boardName = response.boardName;
       pinObject.avatar = response.avatar;
       const domString = pinCardString(pinObject);

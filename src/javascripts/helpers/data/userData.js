@@ -14,7 +14,7 @@ const getUserById = (uid) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const getavatar = (userId) => new Promise((resolve, reject) => {
+const getAvatar = (userId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/users.json?orderBy="uid"&equalTo="${userId}"`)
     .then((response) => {
       const userKey = Object.keys(response.data)[0];
@@ -23,10 +23,4 @@ const getavatar = (userId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-// const getavatar = () => {
-//   const user = firebase.auth().currentUser;
-//   console.error(user);
-//   return user.photoURL;
-// };
-
-export default { getUserById, getavatar };
+export default { getUserById, getAvatar };

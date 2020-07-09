@@ -27,13 +27,13 @@ const boardCardMaker = (board) => new Promise((resolve, reject) => {
   boardPreview(board.id)
     .then((preview) => {
       const domString = `
-      <div class="card board-selector" id =${board.id} style="width: 18rem;">
+      <div class="card board-selector" id=${board.id} style="width: 18rem;">
       <div class="card-body">
         <div class="card-title board-card-title">
           <h3>${board.name}</h3> 
-          <button id="edit-${board.id}" class="edit-button hide"><i class="fas fa-edit"></i>
+          <button id="edit-${board.id}" class="edit-button board-edit-button hide" data-boardid="${board.id}"><i class="fas fa-edit"></i>
         </div>
-        <div class="board-preview">${preview}</div>
+        <div class="board-preview" id="${board.id}-preview">${preview}</div>
       </div>
     </div>
       `;

@@ -3,6 +3,8 @@ import smash from './data/smash';
 import pinList from '../components/pinList/pinList';
 import singlePin from '../components/singlePin/singlePin';
 import boardList from '../components/boardList/boardList';
+import editBoard from '../components/editBoard/editBoard';
+// import boardData from './data/boardData';
 
 const deletePinClick = (e) => {
   const pinId = e.target.attributes[3].value;
@@ -27,6 +29,12 @@ const showPinEvent = (e) => {
 };
 
 const clickEvents = () => {
+  $('body').on('mouseenter', '.board-selector', (e) => {
+    e.target.closest('.card').classList.add('hovering');
+  });
+  $('body').on('mouseleave', '.board-selector', (e) => {
+    e.target.closest('.card').classList.remove('hovering');
+  });
   $('body').on('click', '#delete-pin', deletePinClick);
   $('body').on('mouseenter', '.pin', (event) => {
     event.target.closest('.card').classList.add('hovering');
@@ -39,6 +47,9 @@ const clickEvents = () => {
   $('body').on('click', '.cancel-edit', pinLinkEvent);
   $('body').on('click', '.board-link', boardLinkEvent);
   $('body').on('click', '.board-selector', pinList.showBoardEvent);
+  $('body').on('click', '.board-edit-button', editBoard.editBoardWindow);
+  $('body').on('click', '.cancel-board-edit', editBoard.cancelBoardEdit);
+  $('body').on('click', '#delete-board', editBoard.deleteBoard);
 };
 
 export default { clickEvents };

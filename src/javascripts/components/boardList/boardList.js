@@ -5,7 +5,7 @@ import userData from '../../helpers/data/userData';
 
 const createBoardsHeader = (userId) => {
   let headerString = '';
-  userData.getavatar(userId)
+  userData.getAvatar(userId)
     .then((avatar) => {
       headerString = `
         <div><img src="${avatar}" class="avatar-l home-button" alt="profile pic"></div>

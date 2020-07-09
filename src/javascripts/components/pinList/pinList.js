@@ -6,15 +6,13 @@ import './pinList.scss';
 
 const getHeaderInfo = (boardId) => new Promise((resolve, reject) => {
   const userId = utils.getCurrentUserId();
-  console.error(`getHearInfo called for ${userId} and ${boardId}`);
   let boardName = '';
   let avatar = '';
   boardData.getBoardName(boardId).then((response) => { boardName = response; })
     .then(() => {
-      userData.getavatar(userId).then((response) => { avatar = response; })
+      userData.getAvatar(userId).then((response) => { avatar = response; })
         .then(() => {
           const headerInfo = { boardName, avatar };
-          console.error(`getHeaderInfo about to resolve ${headerInfo.avatar} and ${headerInfo.boardName}`);
           resolve(headerInfo);
         });
     })
@@ -24,7 +22,6 @@ const getHeaderInfo = (boardId) => new Promise((resolve, reject) => {
 const createBoardHeader = (boardId) => {
   getHeaderInfo(boardId)
     .then((headerInfo) => {
-      console.error(`createBoardHeader recieved ${headerInfo.avatar} and ${headerInfo.boardName}`);
       const headerString = `
         <div class="header-chunk"><img src="${headerInfo.avatar}" class="avatar-s home-button" alt="profile pic">
         <span class="header-text">${headerInfo.boardName}</span></div>
