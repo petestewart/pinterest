@@ -1,8 +1,34 @@
 import pinData from '../../helpers/data/pinData';
-import singlePin from '../singlePin/singlePin';
+import boardData from '../../helpers/data/boardData';
 import utils from '../../helpers/utils';
 import userData from '../../helpers/data/userData';
 import './pinList.scss';
+
+const getHeaderInfo = (boardId) => new Promise((resolve, reject) => {
+  const userId = utils.getCurrentUserId();
+  let boardName = '';
+  let avatar = '';
+  boardData.getBoardName(boardId).then((response) => { boardName = response; })
+    .then(() => {
+      userData.getAvatar(userId).then((response) => { avatar = response; })
+        .then(() => {
+          const headerInfo = { boardName, avatar };
+          resolve(headerInfo);
+        });
+    })
+    .catch((err) => { reject(err); });
+});
+
+const createBoardHeader = (boardId) => {
+  getHeaderInfo(boardId)
+    .then((headerInfo) => {
+      const headerString = `
+        <div class="header-chunk"><img src="${headerInfo.avatar}" class="avatar-s home-button" alt="profile pic">
+        <span class="header-text">${headerInfo.boardName}</span></div>
+        `;
+      utils.printToDom('#header', headerString);
+    });
+};
 
 const makePin = (pin) => new Promise((resolve, reject) => {
   const userId = pin.uid;
@@ -23,22 +49,19 @@ const makePin = (pin) => new Promise((resolve, reject) => {
 });
 
 const showBoard = (boardId) => {
+  createBoardHeader(boardId);
+  let domString = '';
   pinData.getBoardPins(boardId)
     .then((pins) => {
-      utils.printToDom('#header', `<h2 class="text-center">${boardId}</h2>`);
-      utils.printToDom('#content', '');
-      const contentDiv = $('#content');
       pins.forEach((pin) => {
         makePin(pin)
-          .then((response) => { contentDiv.append(response); });
+          .then((response) => {
+            domString += response;
+          })
+          .then(() => {
+            utils.printToDom('#content', domString);
+          });
       });
-      $('body').on('mouseenter', '.pin', (event) => {
-        event.target.closest('.card').classList.add('bg-dark');
-      });
-      $('body').on('mouseleave', '.pin', (event) => {
-        event.target.closest('.card').classList.remove('bg-dark');
-      });
-      $('body').on('click', '.pin', singlePin.showPin);
     })
     .catch((err) => console.error('showBoard broke', err));
 };
@@ -48,4 +71,4 @@ const showBoardEvent = (e) => {
   showBoard(boardId);
 };
 
-export default { showBoard, showBoardEvent };
+export default { showBoard, showBoardEvent, getHeaderInfo };

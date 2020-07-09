@@ -1,5 +1,5 @@
 import './pinCard.scss';
-import boardData from '../../helpers/data/boardData';
+import pinList from '../pinList/pinList';
 
 const pinCardString = (pin) => {
   const domString = `
@@ -10,10 +10,11 @@ const pinCardString = (pin) => {
       <div id="edit">
         <div class="pin-info-header">
           <div>
-            saved to <strong>${pin.boardName}</strong>
+          <img src="${pin.avatar}" class="avatar-mini home-button">
+            saved to <strong class="board-link" id="${pin.boardId}">${pin.boardName}</strong>
           </div>
-          <div>  
-            <button id="edit-button" class="hide"><i class="fas fa-edit"></i></button>
+          <div>
+            <button id="edit-button" class="pin-edit-button hide"><i class="fas fa-edit"></i></button>
           </div>
         </div>
       </div>
@@ -24,9 +25,10 @@ const pinCardString = (pin) => {
 
 const pinCardMaker = (pin) => new Promise((resolve, reject) => {
   const pinObject = pin;
-  boardData.getBoardName(pin.boardId)
+  pinList.getHeaderInfo(pin.boardId)
     .then((response) => {
-      pinObject.boardName = response;
+      pinObject.boardName = response.boardName;
+      pinObject.avatar = response.avatar;
       const domString = pinCardString(pinObject);
       resolve(domString);
     })

@@ -1,17 +1,16 @@
-import editWindow from '../editWindow/editWindow';
+import editPin from '../editPin/editPin';
 import pinCard from '../pinCard/pinCard';
 import pinData from '../../helpers/data/pinData';
 import utils from '../../helpers/utils';
 
-const showPin = (e) => {
-  const pinId = e.target.closest('.card').id;
+const showPin = (pinId) => {
   pinData.getSinglePin(pinId)
     .then((pin) => {
       utils.printToDom('#header', '');
       pinCard.pinCardMaker(pin)
         .then((domString) => {
           utils.printToDom('#content', domString);
-          $('#edit-button').click(editWindow.pinEditWindow);
+          $('.pin-edit-button').click(editPin.pinEditWindow);
           $('body').on('mouseenter', '#edit', () => {
             pinCard.showEditButton();
           });

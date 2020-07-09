@@ -1,31 +1,42 @@
 import utils from '../../helpers/utils';
 import boardData from '../../helpers/data/boardData';
 import boardCard from '../boardCard/boardCard';
-import pinList from '../pinList/pinList';
-// import pinData from '../../helpers/data/pinData';
+import userData from '../../helpers/data/userData';
 
-// const boardPreview = (boardId) => new Promise((resolve, reject) => {
-//   let domString = '';
-//   pinData.getBoardPins(boardId)
-//     .then((boardPins) => {
-//       boardPins.forEach((boardPin) => {
-//         domString += `<img src=${boardPin.url}>`;
-//       });
-//       resolve(domString);
-//     })
-// })
+const createBoardsHeader = (userId) => {
+  let headerString = '';
+  userData.getAvatar(userId)
+    .then((avatar) => {
+      headerString = `
+        <div><img src="${avatar}" class="avatar-l home-button" alt="profile pic"></div>
+        <h2 class="text-center">Your Boards</h2>
+    `;
+      utils.printToDom('#header', headerString);
+    });
+};
 
 const createBoards = () => {
+  let domString = '';
   const userId = utils.getCurrentUserId();
+  createBoardsHeader(userId);
   boardData.getUserBoards(userId)
     .then((boards) => {
-      utils.printToDom('#header', '<h2 class="text-center">Your Boards</h2>');
-      let domString = '';
       boards.forEach((board) => {
-        domString += boardCard.boardCardMaker(board);
+        boardCard.boardCardMaker(board)
+          .then((response) => {
+            domString += response;
+          })
+          .then(() => {
+            utils.printToDom('#content', domString);
+            // $('#edit-button').click(TODO: EDIT BOARD FUNCTION); **
+            $('body').on('mouseenter', '.board-selector', (e) => {
+              boardCard.showEditButton(e);
+            });
+            $('body').on('mouseleave', '.board-selector', (e) => {
+              boardCard.hideEditButton(e);
+            });
+          });
       });
-      utils.printToDom('#content', domString);
-      $('body').on('click', '.pin-selector', pinList.showBoardEvent);
     })
     .catch((error) => console.error('getUserBoards broke ', error));
 };

@@ -12,12 +12,12 @@ const init = () => {
   authData.checkLoginStatus();
   auth.createLoginButton();
   navbar.logoutEvent();
-  $('body').on('mouseenter', '.pin-selector', (e) => {
-    e.target.closest('.card').classList.add('bg-dark');
-  });
-  $('body').on('mouseleave', '.pin-selector', (e) => {
-    e.target.closest('.card').classList.remove('bg-dark');
-  });
+  // $('body').on('mouseenter', '.board-selector', (e) => {
+  //   e.target.closest('.card').classList.add('hovering');
+  // });
+  // $('body').on('mouseleave', '.board-selector', (e) => {
+  //   e.target.closest('.card').classList.remove('hovering');
+  // });
   clickEvents.clickEvents();
 };
 
