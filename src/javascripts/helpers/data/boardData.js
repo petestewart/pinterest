@@ -37,18 +37,22 @@ const getBoardbyId = (boardId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const addBoard = (newBoardObj) => axios.post(`${baseUrl}/boards.json`, newBoardObj);
+
+// const addBoard = (newBoardObj) => console.error(newBoardObj);
+
 const deleteBoard = (boardId) => new Promise((resolve, reject) => {
   axios.delete(`${baseUrl}/boards/${boardId}.json`);
   pinData.getBoardPins(boardId)
     .then((pins) => {
       pins.forEach((pin) => {
         pinData.deletePin(pin.id);
-        resolve();
       });
+      resolve();
     })
     .catch((err) => (reject(err)));
 });
 
 export default {
-  getUserBoards, getBoardName, getBoardbyId, deleteBoard,
+  getUserBoards, getBoardName, getBoardbyId, deleteBoard, addBoard,
 };
