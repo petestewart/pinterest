@@ -19,18 +19,29 @@ const getHeaderInfo = (boardId) => new Promise((resolve, reject) => {
     .catch((err) => { reject(err); });
 });
 
-const createBoardHeader = (boardId) => {
+const displayBoardHeader = (boardId) => {
   getHeaderInfo(boardId)
     .then((headerInfo) => {
       const headerString = `
-        <div class="header-chunk"><img src="${headerInfo.avatar}" class="avatar-s home-button" alt="profile pic">
-        <span class="header-text">${headerInfo.boardName}</span></div>
-        `;
+      <div class="row">
+        <div class="col-2 left"></div>
+        <div class="col-8 center">
+          <div>
+            <img src="${headerInfo.avatar}" class="avatar-s home-button" alt="profile pic">
+            <span class="header-text">${headerInfo.boardName}</span>
+          </div>
+        </div>
+        <div class="col-2 add-button">
+          <button class="btn" type="button">
+            <i class="fas fa-plus-square" id="add-pin" data-boardBind="${boardId}"></i>
+          </button>
+        </div>
+      </div>`;
       utils.printToDom('#header', headerString);
     });
 };
 
-const makePin = (pin) => new Promise((resolve, reject) => {
+const generatePin = (pin) => new Promise((resolve, reject) => {
   const userId = pin.uid;
   userData.getUserById(userId)
     .then((response) => {
@@ -49,12 +60,12 @@ const makePin = (pin) => new Promise((resolve, reject) => {
 });
 
 const showBoard = (boardId) => {
-  createBoardHeader(boardId);
+  displayBoardHeader(boardId);
   let domString = '';
   pinData.getBoardPins(boardId)
     .then((pins) => {
       pins.forEach((pin) => {
-        makePin(pin)
+        generatePin(pin)
           .then((response) => {
             domString += response;
           })

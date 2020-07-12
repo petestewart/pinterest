@@ -5,6 +5,7 @@ import singlePin from '../components/singlePin/singlePin';
 import boardList from '../components/boardList/boardList';
 import editBoard from '../components/editBoard/editBoard';
 import boardCard from '../components/boardCard/boardCard';
+import editPin from '../components/editPin/editPin';
 // import boardData from './data/boardData';
 
 const deletePinClick = (e) => {
@@ -58,7 +59,9 @@ const clickEvents = () => {
   $('body').on('click', '.cancel-board-edit', editBoard.cancelBoardEdit);
   $('body').on('click', '#delete-board', editBoard.deleteBoard);
   $('body').on('click', '#add-board', boardList.addBoard);
+  $('body').on('click', '#add-pin', editPin.addPin);
   $('body').on('click', '#board-creator', boardList.addBoardEvent);
+  $('body').on('click', '#pin-creator', editPin.addPinEvent);
 };
 
 export default { clickEvents };
