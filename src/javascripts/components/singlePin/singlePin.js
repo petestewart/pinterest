@@ -4,6 +4,7 @@ import pinData from '../../helpers/data/pinData';
 import utils from '../../helpers/utils';
 
 const showPin = (pinId) => {
+  console.error(pinId);
   pinData.getSinglePin(pinId)
     .then((pin) => {
       utils.printToDom('#header', '');

@@ -27,7 +27,7 @@ const addBoard = () => {
           <div class="col-2"></div>
           <div class="col-8"><h4 class="text-center mt-3">Create New Board</h4></div>
           <div class="col-2 home-button">
-            <button class="home-button" id="pin1">
+            <button class="home-button" id="board-edit-cancel">
               <i class="fas fa-times"></i>
             </button>
           </div>
@@ -63,7 +63,7 @@ const createBoardsHeader = (userId) => {
       headerString = `
         <div><img src="${avatar}" class="avatar-l home-button" alt="profile pic"></div>
         <div class="row">
-          <div class="col-2"></div>
+          <div class="col-2 left"></div>
           <div class="col-8"><h2 class="text-center">Your Boards</h2></div>
           <div class="col-2 add-button">
             <button class="btn" type="button" data-toggle="collapse" data-target="#add-type-menu" aria-expanded="false" aria-controls="add-type-menu">
