@@ -31,7 +31,7 @@ const deleteBoard = (e) => {
   boardData.deleteBoard(boardId)
     .then(() => {
       utils.printToDom(`#${boardId}-preview`, 'Board deleted!');
-      setTimeout(boardList.createBoards(), 2000);
+      boardList.createBoards();
     })
     .catch((err) => { console.error('deleteBoard failed ', err); });
 };
