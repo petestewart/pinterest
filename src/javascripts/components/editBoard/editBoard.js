@@ -1,11 +1,18 @@
 import utils from '../../helpers/utils';
 import boardData from '../../helpers/data/boardData';
 import boardList from '../boardList/boardList';
+import boardCard from '../boardCard/boardCard';
 import './editBoard.scss';
 
 const turnOnEditMode = () => {
   $('.edit-button').addClass('hide');
   $('body').off('mouseenter', '.board-selector');
+};
+
+const turnOffEditMode = () => {
+  $('body').on('mouseenter', '.board-selector', (e) => {
+    boardCard.showEditButton(e);
+  });
 };
 
 const editBoardWindow = (e) => {
@@ -23,6 +30,7 @@ const editBoardWindow = (e) => {
 const cancelBoardEdit = (e) => {
   e.stopPropagation();
   boardList.createBoards();
+  turnOffEditMode();
 };
 
 const deleteBoard = (e) => {
@@ -32,6 +40,7 @@ const deleteBoard = (e) => {
     .then(() => {
       utils.printToDom(`#${boardId}-preview`, 'Board deleted!');
       boardList.createBoards();
+      turnOffEditMode();
     })
     .catch((err) => { console.error('deleteBoard failed ', err); });
 };

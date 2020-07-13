@@ -3,6 +3,8 @@ import boardData from '../../helpers/data/boardData';
 import boardCard from '../boardCard/boardCard';
 import userData from '../../helpers/data/userData';
 import './boardList.scss';
+// eslint-disable-next-line import/no-cycle
+import editBoard from '../editBoard/editBoard';
 
 const showForm = () => {
   const domString = `
@@ -50,6 +52,7 @@ const addBoardEvent = (e) => {
     .then(() => {
       // eslint-disable-next-line no-use-before-define
       createBoards();
+      editBoard.turnOffEditMode();
     })
     .catch((err) => console.error('could not add board', err));
 };
