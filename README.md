@@ -18,5 +18,10 @@ A single-page web app built with HTML , BOOTSTRAP, SASS, and JS that allows user
 ## How To Run:
 > Project is deployed at [https://chatty-hitchhiker-66a0d.web.app/](https://chatty-hitchhiker-66a0d.web.app/)
 
+## Backlog
+- [ ] Allow user to upload profile pic
+- [ ] Make responsive for smaller screens
+- [ ] Bug: occasionally the change board dropdown menu is unpopulated
+
 ## Technologies Used
 [![Vanilla JavaScript](https://img.shields.io/badge/JavaScript-2c9fcc?style=flat-square)](#) [![HTML](https://img.shields.io/badge/-HTML-2c9fcc?style=flat-square)](#) [![CSS](https://img.shields.io/badge/-CSS-2c9fcc?style=flat-square)](#)
