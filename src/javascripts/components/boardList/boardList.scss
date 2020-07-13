@@ -13,3 +13,19 @@
   }
   
 }
+
+.board-selector {
+  border-radius: 20px !important;
+}
+
+.edit-menu-card {
+  min-width: 100px !important;
+}
+
+.edit-menu-item {
+  cursor: pointer;
+}
+
+.edit-menu-item:hover {
+  color: grey;
+}

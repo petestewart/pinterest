@@ -2,7 +2,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 body {
-  background-color: grey;
+  background-color: lightgrey;
 }
 
 .hide {
@@ -23,7 +23,9 @@ body {
 }
 
 .hovering {
-  background-color:lightgray;
+  background-color:rgb(238, 238, 238);
+  color: darkred;
+  cursor: pointer;
 }
 
 .avatar-l {
@@ -56,4 +58,8 @@ body {
 .header-text {
   font-size: x-large;
   font-weight: bold;
+}
+
+.home-button {
+  cursor: pointer;
 }
