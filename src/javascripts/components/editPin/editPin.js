@@ -4,6 +4,59 @@ import utils from '../../helpers/utils';
 import userData from '../../helpers/data/userData';
 import pinList from '../pinList/pinList';
 
+const setBoardEvent = (e) => {
+  e.preventDefault();
+  const pinId = e.target.dataset.pinid;
+  const newBoard = $('#set-new-board').val();
+  console.error(pinId, newBoard);
+  pinData.updatePinBoard(pinId, newBoard);
+};
+
+// const editShroomEvent = (e) => {
+//   console.error('you clicked on the form', e.target.dataset.mushroomId);
+//   e.preventDefault();
+//   // get id of mushroom to update
+//   const { mushroomId } = e.target.dataset;
+//   // create the 'modified' mushroom
+//   const editedMush = {
+//     name: $('#edit-mush-name').val(),
+//     size: $('#edit-mush-size').val(),
+//     location: $('#edit-mush-location').val(),
+//     weight: $('#edit-mush-weight').val() * 1,
+//   };
+// pass those to an updated mushroom data function
+//   mushroomData.updateMushroom(mushroomId, editedMush)
+//     .then(() => {
+//       // eslint-disable-next-line no-use-before-define
+//       buildForest();
+//       utils.printToDom('#edit-shroom', '');
+//     })
+//     .catch((err) => console.error(err));
+// };
+
+// const pinEditWindow = (e) => {
+//   let pin = '';
+//   const pinId = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].id;
+//   pinData.getSinglePin(pinId)
+//     .then((pinResponse) => {
+//       pin = pinResponse;
+//       let domString = `
+//       <div class="pin-info-header">
+//         <div>
+//         <button type="button" class="btn btn-danger" id="delete-pin" data="${pin.pinId}">Delete pin</button>
+//       `;
+//       boardData.getBoardName(pin.boardId)
+//         .then((response) => {
+//           domString += `
+//             <p class="mt-3">Current board: <strong>${response}</strong></p>
+//           </div>
+//           <div><button class="cancel-edit" id="${pin.id}"><i class="fas fa-times"></i></button></div>`;
+//           utils.printToDom('#edit', domString);
+//         })
+//         .catch((err) => console.error(err));
+//     });
+// };
+
 const pinEditWindow = (e) => {
   let pin = '';
   const pinId = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].id;
@@ -15,12 +68,27 @@ const pinEditWindow = (e) => {
         <div>
         <button type="button" class="btn btn-danger" id="delete-pin" data="${pin.pinId}">Delete pin</button>
       `;
-      boardData.getBoardName(pin.boardId)
-        .then((response) => {
+      boardData.getUserBoards(pin.uid)
+        .then((boards) => {
           domString += `
-            <p class="mt-3">Current board: <strong>${response}</strong></p>
-          </div>
-          <div><button class="cancel-edit" id="${pin.id}"><i class="fas fa-times"></i></button></div>`;
+          <form>
+          <div class="form-group">
+            <label for="set-new-board">Example select</label>
+            <select class="form-control" id="set-new-board">`;
+          boards.forEach((board) => {
+            console.error(board.name);
+            domString += `<option value="${board.id}"`;
+            if (pin.boardId === board.id) {
+              domString += ' selected';
+            }
+            domString += `>${board.name}</option>`;
+          });
+          domString += `
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" data-pinid="${pinId}"  id="set-board">Submit</button>
+    </form>
+    `;
           utils.printToDom('#edit', domString);
         })
         .catch((err) => console.error(err));
@@ -99,5 +167,5 @@ const addPinEvent = (e) => {
 };
 
 export default {
-  pinEditWindow, showForm, addPin, addPinEvent,
+  pinEditWindow, showForm, addPin, addPinEvent, setBoardEvent,
 };
