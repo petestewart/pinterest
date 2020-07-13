@@ -16,7 +16,7 @@ A single-page web app built with HTML , BOOTSTRAP, SASS, and JS that allows user
 * Pete Stewart : https://github.com/petestewart72
 
 ## How To Run:
-> Project is deployed at [https://chatty-hitchhiker-66a0d.web.app/](https://chatty-hitchhiker-66a0d.web.app/)
+> Project is deployed at [https://pinterest-bbffb.web.app/](https://pinterest-bbffb.web.app/)
 
 ## Backlog
 - [ ] Allow user to upload profile pic
