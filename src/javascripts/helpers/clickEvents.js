@@ -62,6 +62,7 @@ const clickEvents = () => {
   $('body').on('click', '#add-pin', editPin.addPin);
   $('body').on('click', '#board-creator', boardList.addBoardEvent);
   $('body').on('click', '#pin-creator', editPin.addPinEvent);
+  $('body').on('click', '#set-board', editPin.setBoardEvent);
 };
 
 export default { clickEvents };

@@ -64,15 +64,17 @@ const showBoard = (boardId) => {
   let domString = '';
   pinData.getBoardPins(boardId)
     .then((pins) => {
-      pins.forEach((pin) => {
-        generatePin(pin)
-          .then((response) => {
-            domString += response;
-          })
-          .then(() => {
-            utils.printToDom('#content', domString);
-          });
-      });
+      if (pins.length === 0) { utils.printToDom('#content', `<h2 id="add-pin" data-boardBind="${boardId}">Add your first pin!</h2>`); } else {
+        pins.forEach((pin) => {
+          generatePin(pin)
+            .then((response) => {
+              domString += response;
+            })
+            .then(() => {
+              utils.printToDom('#content', domString);
+            });
+        });
+      }
     })
     .catch((err) => console.error('showBoard broke', err));
 };

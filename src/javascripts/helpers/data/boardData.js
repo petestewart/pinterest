@@ -39,8 +39,6 @@ const getBoardbyId = (boardId) => new Promise((resolve, reject) => {
 
 const addBoard = (newBoardObj) => axios.post(`${baseUrl}/boards.json`, newBoardObj);
 
-// const addBoard = (newBoardObj) => console.error(newBoardObj);
-
 const deleteBoard = (boardId) => new Promise((resolve, reject) => {
   axios.delete(`${baseUrl}/boards/${boardId}.json`);
   pinData.getBoardPins(boardId)
