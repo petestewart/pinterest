@@ -46,10 +46,8 @@ const addBoardEvent = (e) => {
     color: 'lightblue',
     uid,
   };
-  // console.error(newBoard);
   boardData.addBoard(newBoardObj)
     .then(() => {
-      console.error('should have created ', newBoardObj);
       // eslint-disable-next-line no-use-before-define
       createBoards();
     })
@@ -95,13 +93,6 @@ const createBoards = () => {
           })
           .then(() => {
             utils.printToDom('#content', domString);
-            // $('#edit-button').click(TODO: EDIT BOARD FUNCTION); **
-            // $('body').on('mouseenter', '.board-selector', (e) => {
-            //   boardCard.showEditButton(e);
-            // });
-            // $('body').on('mouseleave', '.board-selector', (e) => {
-            //   boardCard.hideEditButton(e);
-            // });
           });
       });
     })
