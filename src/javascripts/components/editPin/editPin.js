@@ -3,6 +3,7 @@ import pinData from '../../helpers/data/pinData';
 import utils from '../../helpers/utils';
 import userData from '../../helpers/data/userData';
 import pinList from '../pinList/pinList';
+import './editPin.scss';
 
 const setBoardEvent = (e) => {
   e.preventDefault();
@@ -22,15 +23,15 @@ const pinEditWindow = (e) => {
       let domString = `
       <div class="pin-info-header">
         <div>
-        <button type="button" class="btn btn-danger" id="delete-pin" data="${pin.pinId}">Delete pin</button>
+        <button type="button" class="btn btn-danger mb-5" id="delete-pin" data="${pin.pinId}">Delete pin</button>
       `;
       boardData.getUserBoards(pin.uid)
         .then((boards) => {
           domString += `
           <form>
           <div class="form-group">
-            <label for="set-new-board">Example select</label>
-            <select class="form-control" id="set-new-board">`;
+            <label for="set-new-board"></label>
+            <select class="form-control mb-3" id="set-new-board">`;
           boards.forEach((board) => {
             domString += `<option value="${board.id}"`;
             if (pin.boardId === board.id) {
@@ -40,9 +41,15 @@ const pinEditWindow = (e) => {
           });
           domString += `
         </select>
+      
+      <button type="submit" class="btn btn-primary" data-pinid="${pinId}"  id="set-board">Change board</button>
       </div>
-      <button type="submit" class="btn btn-primary" data-pinid="${pinId}"  id="set-board">Submit</button>
     </form>
+    </div>
+    <div>
+    <button class="cancel-pin-edit" data-pinid="${pinId}"><i class="fas fa-times cancel-pin-edit" data-pinid="${pinId}"></i></button>
+    </div>
+    </div>
     `;
           utils.printToDom('#edit', domString);
         })

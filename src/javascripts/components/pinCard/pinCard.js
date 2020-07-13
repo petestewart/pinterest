@@ -11,10 +11,10 @@ const pinCardString = (pin) => {
         <div class="pin-info-header">
           <div>
           <img src="${pin.avatar}" class="avatar-mini home-button">
-            saved to <strong class="board-link" id="${pin.boardId}">${pin.boardName}</strong>
+            saved to <button class="btn-primary board-link" id="${pin.boardId}">${pin.boardName}</button>
           </div>
           <div>
-            <button id="edit-button" class="pin-edit-button hide"><i class="fas fa-edit"></i></button>
+            <button id="edit-button" class="btn pin-edit-button hide"><i class="fas fa-edit"></i></button>
           </div>
         </div>
       </div>

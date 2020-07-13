@@ -3,8 +3,7 @@ import boardData from '../../helpers/data/boardData';
 import boardCard from '../boardCard/boardCard';
 import userData from '../../helpers/data/userData';
 import './boardList.scss';
-// eslint-disable-next-line import/no-cycle
-import editBoard from '../editBoard/editBoard';
+// import editBoard from '../editBoard/editBoard';
 
 const showForm = () => {
   const domString = `
@@ -52,7 +51,7 @@ const addBoardEvent = (e) => {
     .then(() => {
       // eslint-disable-next-line no-use-before-define
       createBoards();
-      editBoard.turnOffEditMode();
+      // editBoard.turnOffEditMode();
     })
     .catch((err) => console.error('could not add board', err));
 };
@@ -71,7 +70,7 @@ const createBoardsHeader = (userId) => {
               <i class="fas fa-plus-square"></i>
             </button>
             <div class="collapse add-type-menu" id="add-type-menu">
-              <div class="card card-body">
+              <div class="card card-body edit-menu-card">
                 <div class="edit-menu-item" id="add-board">Board</div>
                 <div class="edit-menu-item" id="add-pin">Pin</div>
               </div>

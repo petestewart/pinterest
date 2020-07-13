@@ -30,6 +30,12 @@ const showPinEvent = (e) => {
   singlePin.showPin(pinId);
 };
 
+const cancelPinEdit = (e) => {
+  e.stopPropagation();
+  const pinId = e.target.dataset.pinid;
+  singlePin.showPin(pinId);
+};
+
 const clickEvents = () => {
   $('body').on('mouseenter', '.board-selector', (e) => {
     e.target.closest('.card').classList.add('hovering');
@@ -63,6 +69,13 @@ const clickEvents = () => {
   $('body').on('click', '#board-creator', boardList.addBoardEvent);
   $('body').on('click', '#pin-creator', editPin.addPinEvent);
   $('body').on('click', '#set-board', editPin.setBoardEvent);
+  $('body').on('click', '.cancel-pin-edit', cancelPinEdit);
+  // $('body').on('mouseenter', '.add-button', (event) => {
+  //   event.target.closest('button').classList.add('button-hovering');
+  // });
+  // $('body').on('mouseleave', '.add-button', (event) => {
+  //   event.target.closest('button').classList.remove('button-hovering');
+  // });
 };
 
 export default { clickEvents };
