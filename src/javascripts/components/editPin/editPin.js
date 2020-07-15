@@ -16,7 +16,7 @@ const setBoardEvent = (e) => {
 
 const pinEditWindow = (e) => {
   let pin = '';
-  const pinId = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].id;
+  const pinId = e.target.dataset.pinid;
   pinData.getSinglePin(pinId)
     .then((pinResponse) => {
       pin = pinResponse;

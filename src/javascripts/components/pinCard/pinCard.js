@@ -14,7 +14,7 @@ const pinCardString = (pin) => {
             saved to <button class="btn-primary board-link" id="${pin.boardId}">${pin.boardName}</button>
           </div>
           <div>
-            <button id="edit-button" class="btn pin-edit-button hide"><i class="fas fa-edit"></i></button>
+            <div id="edit-button" class="pin-edit-button hide" data-pinid="${pin.id}"><i class="fas fa-edit" data-pinid="${pin.id}"></i></div>
           </div>
         </div>
       </div>
