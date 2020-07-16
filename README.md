@@ -21,7 +21,7 @@ A single-page web app built with HTML , BOOTSTRAP, SASS, and JS that allows user
 ## Backlog
 - [ ] Allow user to upload profile pic
 - [ ] Make responsive for smaller screens
-- [ ] Bug: occasionally the change board dropdown menu is unpopulated
+- [x] Bug: occasionally the change board dropdown menu is unpopulated
 - [x] Stylize login screen
 
 ## Technologies Used
