@@ -1,5 +1,5 @@
 # PIИTEЯST
-A single-page web app built with HTML , BOOTSTRAP, SASS, and JS that allows users to post images as "pins" which are organized into "boards". This was built as an assignment during my enrollment at [Nashville Software School](http://nashvillesoftwareschool.com/) while we were learning to use Firebase, Axios, and CRUD.
+A single-page web app built with HTML, BOOTSTRAP, SASS, and JS that allows users to post images as "pins" which are organized into "boards". This was built as an assignment during my enrollment at [Nashville Software School](http://nashvillesoftwareschool.com/) while we were learning to use Firebase, Axios, and CRUD.
 
 ## Feature List
 * User authorization with Google
