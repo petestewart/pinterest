@@ -21,11 +21,13 @@ A single-page web app built with HTML, BOOTSTRAP, SASS, and JS that allows users
 ## Backlog
 - [x] Bug: occasionally the change board dropdown menu is unpopulated
 - [x] Stylize login screen
-- [ ] Allow user to upload profile pic
+- [ ] Use Google profile pic
 - [ ] Add descriptions for pics
 - [ ] Custom colors for boards
 - [ ] Add date to "pinned by" caption on pins
 - [ ] Make responsive for smaller screens
+- [ ] Make close buttons look batter
+- [ ] Fix animated way that cards are displaying
 
 ## Technologies Used
 [![Vanilla JavaScript](https://img.shields.io/badge/JavaScript-2c9fcc?style=flat-square)](#) [![HTML](https://img.shields.io/badge/-HTML-2c9fcc?style=flat-square)](#) [![CSS](https://img.shields.io/badge/-CSS-2c9fcc?style=flat-square)](#)
