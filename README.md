@@ -27,7 +27,7 @@ A single-page web app built with HTML, BOOTSTRAP, SASS, and JS that allows users
 - [ ] Add date to "pinned by" caption on pins
 - [ ] Make responsive for smaller screens
 - [ ] Make close buttons look batter
-- [ ] Fix animated way that cards are displaying
+- [ ] Fix animated way that cards are populating
 
 ## Technologies Used
 [![Vanilla JavaScript](https://img.shields.io/badge/JavaScript-2c9fcc?style=flat-square)](#) [![HTML](https://img.shields.io/badge/-HTML-2c9fcc?style=flat-square)](#) [![CSS](https://img.shields.io/badge/-CSS-2c9fcc?style=flat-square)](#)
