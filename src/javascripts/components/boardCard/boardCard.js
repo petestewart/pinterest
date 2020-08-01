@@ -1,17 +1,13 @@
-import pinData from '../../helpers/data/pinData';
+// import pinData from '../../helpers/data/pinData';
 import './boardCard.scss';
 
-const boardPreview = (boardId) => new Promise((resolve, reject) => {
+const boardPreview = (board) => {
   let domString = '';
-  pinData.getBoardPins(boardId)
-    .then((pins) => {
-      pins.forEach((pin) => {
-        domString += `<img src="${pin.url}">`;
-      });
-      resolve(domString);
-    })
-    .catch((err) => reject(err));
-});
+  board.pins.forEach((pin) => {
+    domString += `<img src="${pin.url}">`;
+  });
+  return domString;
+};
 
 const showEditButton = (e) => {
   const boardId = e.target.closest('.card').id;
@@ -23,10 +19,9 @@ const hideEditButton = (e) => {
   $(`#edit-${boardId}`).addClass('hide');
 };
 
-const boardCardMaker = (board) => new Promise((resolve, reject) => {
-  boardPreview(board.id)
-    .then((preview) => {
-      const domString = `
+const boardCardMaker = (board) => {
+  const preview = boardPreview(board);
+  const domString = `
       <div class="card board-selector" id=${board.id} style="width: 18rem;">
       <div class="card-body">
         <div class="card-title board-card-title">
@@ -37,9 +32,7 @@ const boardCardMaker = (board) => new Promise((resolve, reject) => {
       </div>
     </div>
       `;
-      resolve(domString);
-    })
-    .catch((err) => reject(err));
-});
+  return domString;
+};
 
 export default { boardCardMaker, showEditButton, hideEditButton };
