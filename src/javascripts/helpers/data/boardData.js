@@ -38,21 +38,22 @@ const getBoardbyId = (boardId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const getBoardsWithPins = (userId) => new Promise((resolve) => {
+const getBoardsWithPins = (userId) => new Promise((resolve, reject) => {
   getUserBoards(userId)
-    .then((boards) => {
-      const boardsWithPins = boards;
-      boards.forEach((board, index) => {
-        pinData.getBoardPins(board.id)
-          .then((pins) => {
-            boardsWithPins[index].pins = pins;
-            if (index === boardsWithPins.length - 1) {
-              resolve(boardsWithPins);
-            }
-          });
+    .then((allBoards) => {
+      const boardsWithPins = allBoards;
+      const getAllPins = [];
+      allBoards.forEach((board) => {
+        getAllPins.push(pinData.getBoardPins(board.id));
       });
-      // .then(() => console.error(boardsWithPins))
-      // .catch((err) => console.error(err));
+      Promise.all(getAllPins)
+        .then((allPins) => {
+          allBoards.forEach((board, index) => {
+            boardsWithPins[index].pins = allPins[index];
+          });
+          resolve(boardsWithPins);
+        })
+        .catch((err) => reject(err));
     });
 });
 

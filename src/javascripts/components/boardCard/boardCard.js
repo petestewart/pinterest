@@ -1,4 +1,3 @@
-// import pinData from '../../helpers/data/pinData';
 import './boardCard.scss';
 
 const boardPreview = (board) => {

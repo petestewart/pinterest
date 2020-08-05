@@ -1,10 +1,8 @@
 import utils from '../../helpers/utils';
 import boardData from '../../helpers/data/boardData';
-// import boardCard from '../boardCard/boardCard';
 import userData from '../../helpers/data/userData';
 import './boardList.scss';
 import boardCard from '../boardCard/boardCard';
-// import editBoard from '../editBoard/editBoard';
 
 const showForm = () => {
   const domString = `
@@ -83,34 +81,12 @@ const createBoardsHeader = (userId) => {
     });
 };
 
-// const createBoards = () => {
-//   let domString = '';
-//   const userId = utils.getCurrentUserId();
-//   createBoardsHeader(userId);
-//   boardData.getUserBoards(userId)
-//     .then((boards) => {
-//       boards.forEach((board, index, array) => {
-//         boardCard.boardCardMaker(board)
-//           .then((response) => {
-//             domString += response;
-//           })
-//           .then(() => {
-//             if (index === array.length - 1) {
-//               utils.printToDom('#content', domString);
-//             }
-//           });
-//       });
-//     })
-//     .catch((error) => console.error('getUserBoards broke ', error));
-// };
-
 const createBoards = () => {
   let domString = '';
   const userId = utils.getCurrentUserId();
   createBoardsHeader(userId);
   boardData.getBoardsWithPins(userId)
     .then((boards) => {
-      console.error(boards);
       boards.forEach((board) => {
         const boardPreview = boardCard.boardCardMaker(board);
         domString += boardPreview;
@@ -119,7 +95,5 @@ const createBoards = () => {
     })
     .catch((err) => console.error(err));
 };
-
-// .catch((error) => console.error('getUserBoards broke ', error));
 
 export default { createBoards, addBoard, addBoardEvent };
