@@ -1,9 +1,8 @@
 import utils from '../../helpers/utils';
 import boardData from '../../helpers/data/boardData';
-import boardCard from '../boardCard/boardCard';
 import userData from '../../helpers/data/userData';
 import './boardList.scss';
-// import editBoard from '../editBoard/editBoard';
+import boardCard from '../boardCard/boardCard';
 
 const showForm = () => {
   const domString = `
@@ -86,19 +85,15 @@ const createBoards = () => {
   let domString = '';
   const userId = utils.getCurrentUserId();
   createBoardsHeader(userId);
-  boardData.getUserBoards(userId)
+  boardData.getBoardsWithPins(userId)
     .then((boards) => {
       boards.forEach((board) => {
-        boardCard.boardCardMaker(board)
-          .then((response) => {
-            domString += response;
-          })
-          .then(() => {
-            utils.printToDom('#content', domString);
-          });
+        const boardPreview = boardCard.boardCardMaker(board);
+        domString += boardPreview;
       });
+      utils.printToDom('#content', domString);
     })
-    .catch((error) => console.error('getUserBoards broke ', error));
+    .catch((err) => console.error(err));
 };
 
 export default { createBoards, addBoard, addBoardEvent };

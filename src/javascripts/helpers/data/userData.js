@@ -1,3 +1,5 @@
+// import firebase from 'firebase/app';
+import 'firebase/auth';
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
 
@@ -20,5 +22,11 @@ const getAvatar = (userId) => new Promise((resolve, reject) => {
     })
     .catch((err) => reject(err));
 });
+
+// const getAvatar = (userId) => new Promise((resolve) => {
+//   const user = firebase.auth().currentUser;
+//   console.error(userId);
+//   resolve(user.providerData[0].photoURL);
+// });
 
 export default { getUserById, getAvatar };

@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import '@babel/polyfill';
 import firebase from 'firebase/app';
 import apiKeys from './helpers/apiKeys.json';
 import authData from './helpers/data/authData';

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
 import pinData from './pinData';
+import utils from '../utils';
 
 const baseUrl = apiKeys.firebaseConfig.databaseURL;
 
@@ -15,7 +16,7 @@ const getUserBoards = (userId) => new Promise((resolve, reject) => {
         boardsObjects[boardId].id = boardId;
         userBoards.push(boardsObjects[boardId]);
       });
-      resolve(userBoards);
+      resolve(utils.alphabetize(userBoards, 'name'));
     })
     .catch((err) => reject(err));
 });
@@ -37,6 +38,25 @@ const getBoardbyId = (boardId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const getBoardsWithPins = (userId) => new Promise((resolve, reject) => {
+  getUserBoards(userId)
+    .then((allBoards) => {
+      const boardsWithPins = allBoards;
+      const getAllPins = [];
+      allBoards.forEach((board) => {
+        getAllPins.push(pinData.getBoardPins(board.id));
+      });
+      Promise.all(getAllPins)
+        .then((allPins) => {
+          allBoards.forEach((board, index) => {
+            boardsWithPins[index].pins = allPins[index];
+          });
+          resolve(boardsWithPins);
+        })
+        .catch((err) => reject(err));
+    });
+});
+
 const addBoard = (newBoardObj) => axios.post(`${baseUrl}/boards.json`, newBoardObj);
 
 const deleteBoard = (boardId) => new Promise((resolve, reject) => {
@@ -52,5 +72,5 @@ const deleteBoard = (boardId) => new Promise((resolve, reject) => {
 });
 
 export default {
-  getUserBoards, getBoardName, getBoardbyId, deleteBoard, addBoard,
+  getUserBoards, getBoardsWithPins, getBoardName, getBoardbyId, deleteBoard, addBoard,
 };
