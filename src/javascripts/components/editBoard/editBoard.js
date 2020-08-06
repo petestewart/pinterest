@@ -22,7 +22,9 @@ const editBoardWindow = (e) => {
   const domString = `
     <div class="board-edit-area">
       <button type="button" class="btn btn-danger" id="delete-board" data-boardId="${boardId}">Delete board</button>
-      <button class="cancel-board-edit" data-boardId="${boardId}"><i class="fas fa-times"></i></button>
+      <button type="button" class="close cancel-board-edit" data-boardId="${boardId}" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>`;
   utils.printToDom(`#${boardId}-preview`, domString);
 };

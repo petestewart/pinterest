@@ -72,7 +72,7 @@ const showBoard = (boardId) => {
             .then((response) => {
               domString += response;
               if (index === array.length - 1) {
-                utils.printToDom('#content', domString);
+                utils.printToDom('#content', `<div class="card-deck board-container">${domString}</div>`);
               }
             });
         });

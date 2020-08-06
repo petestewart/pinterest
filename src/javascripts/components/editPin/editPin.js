@@ -40,15 +40,16 @@ const pinEditWindow = (e) => {
             domString += `>${board.name}</option>`;
           });
           domString += `
-        </select>
-      
-      <button type="submit" class="btn btn-primary" data-pinid="${pinId}"  id="set-board">Change board</button>
+              </select>
+              <button type="submit" class="btn btn-primary" data-pinid="${pinId}" id="set-board">Change board</button>
+            </div>
+          </form>
+        </div>
+      <div>
+        <button type="button" class="close cancel-pin-edit" data-pinid="${pinId}" aria-label="Close">
+          <span aria-hidden="true" data-pinid="${pinId}">&times;</span>
+        </button>
       </div>
-    </form>
-    </div>
-    <div>
-    <button class="cancel-pin-edit" data-pinid="${pinId}"><i class="fas fa-times cancel-pin-edit" data-pinid="${pinId}"></i></button>
-    </div>
     </div>
     `;
           utils.printToDom('#edit', domString);
@@ -59,14 +60,18 @@ const pinEditWindow = (e) => {
 
 const showForm = (userId, boardBind) => {
   let domString = `
-  <form id="add-pin-form">
-    <div class="form-group">
-      <label for="pin-url">URL</label>
-      <input type="text" class="form-control" id="pin-url">
-    </div>
-    <div class="form-group">
-      <label for="pin-board">Board</label>
-      <select class="form-control" id="pin-board">`;
+  <div id="create-new-pin-card">
+    <button type="button" class="close home-button" id="board-edit-cancel" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <form id="add-pin-form">
+      <div class="form-group">
+        <label for="pin-url">URL</label>
+        <input type="text" class="form-control" id="pin-url">
+      </div>
+      <div class="form-group">
+        <label for="pin-board">Board</label>
+        <select class="form-control" id="pin-board">`;
 
   boardData.getUserBoards(userId)
     .then((boards) => {
@@ -78,10 +83,11 @@ const showForm = (userId, boardBind) => {
         domString += `>${board.name}</option>`;
       });
       domString += `
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary" id="pin-creator">Submit</button>
-    </form>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" id="pin-creator">Submit</button>
+      </form>
+    </div>
     `;
       utils.printToDom('#content', domString);
     })
@@ -94,16 +100,10 @@ const addPin = (e) => {
   userData.getAvatar(userId)
     .then((avatar) => {
       const headerString = `
-        <div><img src="${avatar}" class="avatar-l home-button" alt="profile pic"></div>
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-8"><h4 class="text-center mt-3">Create New Pin</h4></div>
-          <div class="col-2 home-button">
-            <button class="home-button" id="pin1">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
+        <div>
+          <img src="${avatar}" class="avatar-l home-button" alt="profile pic">
         </div>
+        <h4 class="text-center mt-3">Create New Pin</h4>
     `;
       utils.printToDom('#header', headerString);
     });

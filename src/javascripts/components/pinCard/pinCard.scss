@@ -26,3 +26,12 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.board-link {
+  font-weight: bold;
+}
+
+.board-link:hover {
+  color: darkred !important;
+  cursor: pointer;
+}

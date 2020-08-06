@@ -6,13 +6,18 @@ import boardCard from '../boardCard/boardCard';
 
 const showForm = () => {
   const domString = `
-  <form id="add-board-form">
-    <div class="form-group">
-      <label for="board-name">Name</label>
-      <input type="text" class="form-control" id="board-name">
-    </div>
-    <button type="submit" class="btn btn-primary" id="board-creator">Submit</button>
-  </form>
+  <div id="create-new-board-card">
+    <button type="button" class="close home-button" id="board-edit-cancel" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <form id="add-board-form">
+      <div class="form-group">
+        <label for="board-name">Name</label>
+        <input type="text" class="form-control" id="board-name">
+      </div>
+      <button type="submit" class="btn btn-primary" id="board-creator">Submit</button>
+    </form>
+  </div>
   `;
   utils.printToDom('#content', domString);
 };
@@ -22,16 +27,10 @@ const addBoard = () => {
   userData.getAvatar(userId)
     .then((avatar) => {
       const headerString = `
-        <div><img src="${avatar}" class="avatar-l home-button" alt="profile pic"></div>
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-8"><h4 class="text-center mt-3">Create New Board</h4></div>
-          <div class="col-2 home-button">
-            <button class="home-button" id="board-edit-cancel">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
+        <div>
+          <img src="${avatar}" class="avatar-l home-button" alt="profile pic">
         </div>
+        <h4 class="text-center mt-3">Create New Board</h4>
     `;
       utils.printToDom('#header', headerString);
     });
