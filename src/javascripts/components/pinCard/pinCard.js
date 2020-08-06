@@ -10,8 +10,9 @@ const pinCardString = (pin) => {
       <div id="edit">
         <div class="pin-info-header">
           <div>
-          <img src="${pin.avatar}" class="avatar-mini home-button">
-            saved to <a class="board-link" id="${pin.boardId}">${pin.boardName}</a>
+            <img src="${pin.avatar}" class="avatar-mini home-button">
+              saved to <a class="board-link" id="${pin.boardId}">${pin.boardName}</a>
+            <h2 class="mt-3">${pin.title}</h2>
           </div>
           <div>
             <div id="edit-button" class="pin-edit-button hide" data-pinid="${pin.id}">

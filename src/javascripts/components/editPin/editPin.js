@@ -8,8 +8,9 @@ import './editPin.scss';
 const setBoardEvent = (e) => {
   e.preventDefault();
   const pinId = e.target.dataset.pinid;
+  const newTitle = $('#set-new-title').val();
   const newBoard = $('#set-new-board').val();
-  pinData.updatePin(pinId, newBoard)
+  pinData.updatePin(pinId, newTitle, newBoard)
     .then(() => setTimeout(() => { pinList.showBoard(newBoard); }, 1000))
     .catch((err) => console.error(err));
 };
@@ -23,14 +24,17 @@ const pinEditWindow = (e) => {
       let domString = `
       <div class="pin-info-header">
         <div>
-        <button type="button" class="btn btn-danger mb-5" id="delete-pin" data="${pin.pinId}">Delete pin</button>
       `;
       boardData.getUserBoards(pin.uid)
         .then((boards) => {
           domString += `
           <form>
           <div class="form-group">
-            <label for="set-new-board"></label>
+            <label for="set-new-title">Title:</label>
+            <input type="text" class="form-control" id="set-new-title" value="${pin.title}">
+        </div>
+          <div class="form-group">
+            <label for="set-new-board">Board:</label>
             <select class="form-control mb-3" id="set-new-board">`;
           boards.forEach((board) => {
             domString += `<option value="${board.id}"`;
@@ -40,10 +44,13 @@ const pinEditWindow = (e) => {
             domString += `>${board.name}</option>`;
           });
           domString += `
-              </select>
-              <button type="submit" class="btn btn-primary" data-pinid="${pinId}" id="set-board">Change board</button>
+              </select></form>
+              <div class="btn-group" role="group" aria-label="edit-pin-btns">
+                <button type="submit" class="btn btn-secondary" data-pinid="${pinId}" id="set-board">Update pin</button>
+                <button type="button" class="btn btn-danger" id="delete-pin" data="${pinId}">Delete pin</button>
+              </div>
             </div>
-          </form>
+          
         </div>
       <div>
         <button type="button" class="close cancel-pin-edit" data-pinid="${pinId}" aria-label="Close">
@@ -68,6 +75,10 @@ const showForm = (userId, boardBind) => {
       <div class="form-group">
         <label for="pin-url">URL</label>
         <input type="text" class="form-control" id="pin-url">
+      </div>
+      <div class="form-group">
+          <label for="pin-title">Title</label>
+          <input type="text" class="form-control" id="pin-title">
       </div>
       <div class="form-group">
         <label for="pin-board">Board</label>
@@ -117,6 +128,7 @@ const addPinEvent = (e) => {
     boardId: $('#pin-board').val(),
     url: $('#pin-url').val(),
     pinId: `pin${Date.now()}`,
+    title: $('#pin-title').val(),
     uid,
   };
   pinData.addPin(newPinObj)
