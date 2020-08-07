@@ -30,4 +30,29 @@ const updateProfile = (changes) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-export default { getUserById, getAvatar, updateProfile };
+const createProfile = (newProfile) => new Promise((resolve, reject) => {
+  axios.put(`${baseUrl}/users/${newProfile.uid}.json`, newProfile)
+    .then(() => resolve())
+    .catch((err) => reject(err));
+});
+
+const checkProfile = (user) => new Promise((resolve, reject) => {
+  getUserById(user.uid)
+    .then((userInfo) => {
+      if (!userInfo) {
+        console.error('no user', user);
+        const newProfile = {
+          name: user.displayName,
+          profilePic: user.photoURL,
+          uid: user.uid,
+        };
+        createProfile(newProfile)
+          .then(resolve)
+          .catch((err) => reject(err));
+      } else resolve();
+    });
+});
+
+export default {
+  getUserById, getAvatar, updateProfile, checkProfile,
+};
