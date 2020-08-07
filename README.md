@@ -21,12 +21,12 @@ A single-page web app built with HTML, BOOTSTRAP, SASS, and JS that allows users
 ## Backlog
 - [x] Bug: occasionally the change board dropdown menu is unpopulated
 - [x] Stylize login screen
-- [ ] Use Google profile pic
-- [ ] Add descriptions for pics
+- [x] Use Google profile pic
+- [x] Add titles for pics
 - [ ] Custom colors for boards
 - [ ] Add date to "pinned by" caption on pins
 - [ ] Make responsive for smaller screens
-- [ ] Make close buttons look better
+- [x] Make close buttons look better
 - [x] Fix animated way that cards are populating
 
 ## Technologies Used
