@@ -11,4 +11,11 @@
 .pin {
   border-radius: 20px !important;
   padding: 20px;
+  min-width: 240px !important;
+  margin: 20px !important;
+}
+
+.board-container {
+  // padding: 35px;
+  width: 100vw;
 }

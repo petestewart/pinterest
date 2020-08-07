@@ -6,7 +6,7 @@ import boardList from '../components/boardList/boardList';
 import editBoard from '../components/editBoard/editBoard';
 import boardCard from '../components/boardCard/boardCard';
 import editPin from '../components/editPin/editPin';
-// import boardData from './data/boardData';
+import profile from '../components/profile/profile';
 
 const deletePinClick = (e) => {
   const pinId = e.target.attributes[3].value;
@@ -70,12 +70,9 @@ const clickEvents = () => {
   $('body').on('click', '#pin-creator', editPin.addPinEvent);
   $('body').on('click', '#set-board', editPin.setBoardEvent);
   $('body').on('click', '.cancel-pin-edit', cancelPinEdit);
-  // $('body').on('mouseenter', '.add-button', (event) => {
-  //   event.target.closest('button').classList.add('button-hovering');
-  // });
-  // $('body').on('mouseleave', '.add-button', (event) => {
-  //   event.target.closest('button').classList.remove('button-hovering');
-  // });
+  $('body').on('click', '#profile-link', profile.displayProfile);
+  $('body').on('click', '#edit-profile-btn', (() => { $('#edit-profile-form').removeClass('hide'); }));
+  $('body').on('click', '#update-profile', profile.updateProfile);
 };
 
 export default { clickEvents };

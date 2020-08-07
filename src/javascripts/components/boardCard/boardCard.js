@@ -25,7 +25,12 @@ const boardCardMaker = (board) => {
       <div class="card-body">
         <div class="card-title board-card-title">
           <h3>${board.name}</h3> 
-          <button id="edit-${board.id}" class="edit-button board-edit-button hide" data-boardid="${board.id}"><i class="fas fa-edit"></i>
+          <button id="edit-${board.id}" class="edit-button board-edit-button hide" data-boardid="${board.id}">
+            <span class="fa-stack fa-1x">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-edit fa-stack-1x fa-inverse"></i>
+            </span>
+          </button>
         </div>
         <div class="board-preview" id="${board.id}-preview">${preview}</div>
       </div>

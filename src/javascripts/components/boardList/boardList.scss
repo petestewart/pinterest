@@ -1,6 +1,7 @@
 .add-button {
   button {
     font-size: 2em;
+    color: grey;
   }
 
   .edit-menu-item {
@@ -28,4 +29,11 @@
 
 .edit-menu-item:hover {
   color: grey;
+}
+
+#create-new-board-card {
+  width: 400px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 1rem;
 }

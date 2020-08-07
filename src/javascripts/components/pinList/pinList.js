@@ -50,6 +50,7 @@ const generatePin = (pin) => new Promise((resolve, reject) => {
       <div class="card pin" id="${pin.id}" style="width: 15rem;">
         <img class="card-img-top" src="${pin.url}" alt="${pin.id}">
         <div class="card-body">
+          <h5 class="card-title">${pin.title}</h5>
           <p class="pin-text">pinned by ${userName}</p>
         </div>
       </div>
@@ -72,7 +73,7 @@ const showBoard = (boardId) => {
             .then((response) => {
               domString += response;
               if (index === array.length - 1) {
-                utils.printToDom('#content', domString);
+                utils.printToDom('#content', `<div class="card-deck board-container">${domString}</div>`);
               }
             });
         });

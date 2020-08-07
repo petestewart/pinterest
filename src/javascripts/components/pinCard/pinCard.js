@@ -10,11 +10,17 @@ const pinCardString = (pin) => {
       <div id="edit">
         <div class="pin-info-header">
           <div>
-          <img src="${pin.avatar}" class="avatar-mini home-button">
-            saved to <button class="btn-primary board-link" id="${pin.boardId}">${pin.boardName}</button>
+            <img src="${pin.avatar}" class="avatar-mini home-button">
+              saved to <a class="board-link" id="${pin.boardId}">${pin.boardName}</a>
+            <h2 class="mt-3">${pin.title}</h2>
           </div>
           <div>
-            <div id="edit-button" class="pin-edit-button hide" data-pinid="${pin.id}"><i class="fas fa-edit" data-pinid="${pin.id}"></i></div>
+            <div id="edit-button" class="pin-edit-button hide" data-pinid="${pin.id}">
+              <span class="fa-stack fa-1x" id="edit-button" data-pinid="${pin.id}">
+                <i class="fas fa-circle fa-stack-2x" data-pinid="${pin.id}"></i>
+                <i class="fas fa-edit fa-stack-1x fa-inverse" data-pinid="${pin.id}"></i>
+              </span>
+            </div>
           </div>
         </div>
       </div>
