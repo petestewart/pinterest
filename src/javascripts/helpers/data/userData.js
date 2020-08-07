@@ -1,4 +1,4 @@
-// import firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import axios from 'axios';
 import apiKeys from '../apiKeys.json';
@@ -23,10 +23,11 @@ const getAvatar = (userId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-// const getAvatar = (userId) => new Promise((resolve) => {
-//   const user = firebase.auth().currentUser;
-//   console.error(userId);
-//   resolve(user.providerData[0].photoURL);
-// });
+const updateProfile = (changes) => new Promise((resolve, reject) => {
+  const user = firebase.auth().currentUser;
+  axios.patch(`${baseUrl}/users/${user.uid}.json`, changes)
+    .then(() => resolve())
+    .catch((err) => reject(err));
+});
 
-export default { getUserById, getAvatar };
+export default { getUserById, getAvatar, updateProfile };
